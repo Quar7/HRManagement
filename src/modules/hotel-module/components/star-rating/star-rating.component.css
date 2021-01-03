@@ -1,0 +1,7 @@
+.star-rating {
+    overflow: hidden;
+}
+
+.inner-star-rating {
+    width: 75px;
+}

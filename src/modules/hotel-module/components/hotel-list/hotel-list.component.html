@@ -1,0 +1,42 @@
+<h1>Hotele</h1>
+<hr>
+<br><br>
+<div class="text-center">
+    <a class="btn btn-lg btn-primary" [routerLink]="['/hotels/add']">Dodaj nowy hotel</a>
+</div>
+<br><br>
+
+<div *ngIf='errorMessage' class='alert alert-danger'>{{errorMessage}}</div>
+<div *ngIf='successMessage' class='alert alert-success'>{{successMessage}}</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nr hotelu</th>
+                <th>Nazwa</th>
+                <th>Miejscowość</th>
+                <th>Adres</th>
+                <th>Klasyfikacja</th>
+                <th>Dostępne pokoje</th>
+                <th colspan="2" class="text-center">Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let hotel of hotels; let i = index'>
+                <th>{{hotel.id}}</th>
+                <td>{{hotel.name}}</td>
+                <td>{{hotel.city}}</td>
+                <td>{{hotel.address}}</td>
+                <td>
+                    <star-rating [rating]='hotel.rating'></star-rating>
+                </td>
+                <td>{{hotel.availableRooms}}</td>
+                <td class="text-center"><a class="btn btn-primary" [routerLink]="['/hotels/edit', hotel.id]">Edytuj</a>
+                </td>
+                <td class="text-center"><a class="btn btn-danger" (click)="deleteHotel(hotel.id)">Usuń</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

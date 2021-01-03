@@ -1,0 +1,45 @@
+<h2 *ngIf='editMode'><span *ngIf='currentHotelName'>{{currentHotelName}} - </span>Edycja</h2>
+<h2 *ngIf='!editMode'>Dodaj nowy hotel</h2>
+<hr>
+<a class="btn btn-outline-secondary" [routerLink]="['/hotels']"><i class="fa fa-chevron-left"></i> Wróć</a>
+<br><br>
+<div *ngIf='errorMessages.length > 0' class='alert alert-danger'>
+  <ul>
+    <li *ngFor='let error of errorMessages'>
+      {{error}}
+    </li>
+  </ul>
+</div>
+<div *ngIf='successMessage' class='alert alert-success'>{{successMessage}}</div>
+
+<div class="col-md-5">
+  <form *ngIf='hotel' (ngSubmit)='saveChanges()'>
+    <div *ngIf='editMode' class="form-group">
+      <label for="name">Numer hotelu:</label>
+      <input type="text" class="form-control" id="id" name="id" [value]='hotel.id' disabled>
+    </div>
+    <div class="form-group">
+      <label for="name">Nazwa:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]='hotel.name'>
+    </div>
+    <div class="form-group">
+      <label for="city">Miejscowość:</label>
+      <input type="text" class="form-control" id="city" name="city" [(ngModel)]='hotel.city'>
+    </div>
+    <div class="form-group">
+      <label for="address">Adres:</label>
+      <input type="text" class="form-control" id="address" name="address" [(ngModel)]='hotel.address'>
+    </div>
+    <div class="form-group">
+      <label for="rating">Klasyfikacja:</label>
+      <input type="number" class="form-control" id="rating" name="rating" [(ngModel)]='hotel.rating'>
+    </div>
+    <div class="form-group">
+      <label for="availableRooms">Dostępne pokoje:</label>
+      <input type="number" class="form-control" id="availableRooms" name="availableRooms"
+        [(ngModel)]='hotel.availableRooms'>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+  </form>
+</div>
